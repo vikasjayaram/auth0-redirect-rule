@@ -12,23 +12,11 @@ function redirectToEmailForm (user, context, callback) {
     };
   }
 
-  // if user clicked 'I agree' on the consent form, persist it to their profile
-  // so they don't get prompted again
   if (context.protocol === 'redirect-callback') {
     if (context.request.body.email) {
       user.email = context.request.body.email;
       user.app_metadata = user.app_metadata || {};
-      /*
-      user.app_metadata.email = context.request.body.email;
-      
-      auth0.users.updateAppMetadata(user.user_id, user.app_metadata)
-        .then(function(){
-          callback(null, user, context);
-        })
-        .catch(function(err){
-          callback(err);
-        });
-      */
+
       var request = require('request@2.56.0');
       var userApiUrl = auth0.baseUrl + '/users';
       request.patch({
