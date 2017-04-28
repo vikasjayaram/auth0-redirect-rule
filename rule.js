@@ -18,8 +18,9 @@ function redirectToEmailForm (user, context, callback) {
     if (context.request.body.email) {
       user.email = context.request.body.email;
       user.app_metadata = user.app_metadata || {};
-      user.app_metadata.email = context.request.body.email;
       /*
+      user.app_metadata.email = context.request.body.email;
+      
       auth0.users.updateAppMetadata(user.user_id, user.app_metadata)
         .then(function(){
           callback(null, user, context);
